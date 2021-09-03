@@ -1,5 +1,4 @@
 package com.company;
-import java.lang.Math; // for Math.sqrt()
 
 // 1.1 Hello world
 /*
@@ -359,11 +358,85 @@ public class Main {
 }
 */
 
+// 4.1 Creating a class
+/*
+
+public class Main {
+    public static void main(String[] args) {
+
+        class Point {
+            int x;
+            int y;
+        }
+
+        // Point point1; reference to the object, but it's not created yet unlike in c++
+        Point point1 = new Point();
+
+
+    }
+}
+*/
+
+// 4.1 Creating a method
+/*
+public class Main {
+    public static void main(String[] args) {
+
+        // variableName.methodName(parameters);
+
+        class Point {
+            int x;
+            int y;
+
+            int takeX() {
+                return x;
+            }
+
+            int takeY() {
+                return y;
+            }
+        }
+
+        Point point1 = new Point();
+
+    }
+}
+*/
+
+
+// 4.3 Methods + variables
+
+public class Main {
+    public static void main(String[] args) {
+
+        // variableName.methodName(parameters);
+
+        class Point {
+            int x;
+            int y;
+
+            void setCoordinates(int crdX, int crdY) {
+                x = crdX;
+                y = crdY;
+            }
+
+            Point retrieveCoordinates() {
+                Point point = new Point();
+                point.x = x;
+                point.y = y;
+
+                return point;
+            }
+        }
+
+        Point point1 = new Point();
+
+    }
+}
+
+
+
 // page 71
-
-
-
-
 
 /* copy-paste
 
@@ -372,4 +445,7 @@ public class Main {
 
     }
 }
+
 */
+
+
