@@ -405,6 +405,7 @@ public class Main {
 
 
 // 4.3 Methods + variables
+/*
 
 public class Main {
     public static void main(String[] args) {
@@ -433,19 +434,130 @@ public class Main {
 
     }
 }
+*/
 
+// 4.4
+/*
 
+public class Main {
+    public static void main(String[] args) {
 
-// page 71
+        class Punkt {
 
-/* copy-paste
+            int x, y;
+
+            void ustawWspolrzedne(int wspX, int wspY)  {
+                x = wspX;
+                y = wspY;
+            }
+
+            Punkt pobierzWspolrzedne() {
+                Punkt punkt = new Punkt();
+                punkt.x = x;
+                punkt.y = y;
+                return punkt;
+            }
+        }
+    }
+}
+*/
+
+// 4.9 Constructors
+/*
+
+    class Punkt {
+        int x, y;
+        Punkt() { // I am the constructor and i set the default values for the object Punkt
+            x = 320;
+            y = 200;
+        }
+    }
+*/
+
+// 4.11
+/*
+
+class Punkt {
+    int x, y;
+    Punkt(int wspX, int wspY) {
+        x = wspX;
+        y = wspY;
+
+        // or instead use
+        // ustawWpolrzedne(wspX, wspY);
+    }
+}
+*/
+
+// ***About access modifiers***
+// methods can be public, private or protected
+// if not specified you the access is granted within the package
+
+// ***Packages***
+// import package_name.class_name; <- when you want to access a class from that package
+// import package_name.*; <- when you want to access all classes from that package
+// For example:
+// import Banana.Bread; <- when you want to access the class Bread from the package Banana
+// import Banana.*; <- when you want to aaccess all classes from the package Banana
+
+// Skipping some parts from chapter 4 - gonna refer to a better source
+
+// CHAPTER 5
+
+// 5.1 Accessing non-existing array element
+/*
+public class Main {
+    public static void main (String args[]) {
+        int array[] = new int[5];
+        int value = array[50];
+        System.out.println("Element with index 49: " + value);
+    }
+}
+*/
+
+// 5.2 Same thing but inside of classes
+/*
+
+public class Main {
+    public static void main (String args[]) {
+        Array array[] = new Array();
+        int value = array.getStuff(20);
+        System.out.println("Element with index 49: " + value);
+    }
+}
+*/
+
+// Try catch
+/*
+
+try {
+    // code that could cause the exception
+}
+catch (TypeOfException0 ExceptionID0) {
+    // in case of exception 0
+}
+catch (TypeOfException1 ExceptionID1) {
+        // in case of exception  1
+}
+finally {
+    // Always executed, not matter if there was an exception or not
+}
+*/
+
+// Throw
+
+// throw new ArrayIndexOutOfBoundsException("Your error message")
+
+// CHAPTER 6 | I/o Operations
+/*
+ copy-paste
 
 public class Main {
     public static void main(String[] args) {
 
     }
 }
-
 */
+
 
 
