@@ -13,24 +13,17 @@
 //		Proszę tak napisać program, aby łatwo było zmieniać liczbę dni w kodzie programu.
 
 /*
-
 public class Main {
-
 	static void calculateAverage() {
 		System.out.println("I just got executed!");
 	}
-
 	public static void main(String[] args) {
-
 		// Variables and constants
 		final int HOW_MANY_DAYS = 7;
-
 		double HighestPossible = Double.MIN_VALUE;
 		double LowestPossible = Double.MAX_VALUE;
 		double averageTemperature = 0;
-
 		int dayOfHighest = 0, dayOfLowest = 0;
-
 		Scanner scanner = new Scanner(System.in);
 
 		// Create array called daysArray that stores "Day" objects
@@ -38,7 +31,6 @@ public class Main {
 
 		// Main logic
 		for (int i = 0; i <= (HOW_MANY_DAYS - 1); i++) {
-
 			// create a Day object
 			daysArray[i] = new Day();
 			System.out.print("Set day number " + (i + 1) + " temperature: ");
@@ -55,8 +47,6 @@ public class Main {
 				HighestPossible = daysArray[i].temperature;
 				dayOfHighest = i;
 			}
-
-
 		}
 
 		// Calculate the Average (could have i been a method?)
@@ -73,8 +63,14 @@ public class Main {
 		System.out.println("On day " + (dayOfHighest + 1) + " there was highest negative temperature, reading " + daysArray[dayOfHighest].temperature);
 		System.out.println("The average temperature is " + averageTemperature);
 
-
 	}
+		package com.company;
+		public class Day {
+			double temperature = 0.0D;
+			public Day() {
+			}
+		}
+
 
 }
 */
@@ -116,10 +112,12 @@ Zakładamy, że rozpatrujemy dwuwymiarową, kwadratową tablicę znaków (liczba
 void backSlash( char [][] tab ) { … } — funkcja wpisuje znaki ‘*’ na głównej przekątnej (diagonalnej) tablicy tab, pozostałe elementy tablicy są wypełnione znakami spacji.
 */
 
+/*
 package com.company;
 
 import java.util.Arrays;
 
+*/
 /*public class Main {
 
 	static double bestScore(double [][] score) {
@@ -147,6 +145,8 @@ import java.util.Arrays;
 		System.out.println(Arrays.deepToString(score)); // returns nested array as a string
 	}
 }*/
+/*
+
 
 import java.util.Arrays;
 
@@ -182,4 +182,4 @@ public class Main {
 
 // Zdefiniuj klase ktora bedzie posiadala jako pole tablice jednowymiarowa
 // (bez wielkosci x góry okreslonej, trzeba ja utworzyx w kostruktorze obiektu i wielkość tablicy zostanie przekazana jako parametr konstruktora).
-// klasa będzie posiadała funkcje która liczy średnia max min mediana.
+// klasa będzie posiadała funkcje która liczy średnia max min mediana.*/
