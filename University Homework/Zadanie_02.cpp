@@ -117,3 +117,40 @@ int main() {
      return 0;
  }
 
+// Zadanie 2.3
+
+#include <iostream>
+
+void rysuj() {
+
+	int n = 0;
+
+	std::cout << "Podaj n" << std::endl;
+	std::cin >> n;
+
+	int szer = 1;
+	int indent = n - 1;
+
+	for (int i = 0; i < n; i++) {
+
+		for (int i = indent; i >= 0; i--) {
+			std::cout << " ";
+		}
+
+
+		for (int i = 0; i < szer; i++) {
+			std::cout << '*';
+		}
+
+		szer = szer + 2;
+		indent--;
+		std::cout << "\n";
+	}
+
+}
+
+int main() {
+
+	rysuj();
+	return 0;
+}
