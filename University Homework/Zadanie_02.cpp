@@ -1,48 +1,28 @@
 // Zadanie 2.1
 
 #include <iostream>
-
-void calculator() {
-
-    double pierwszaLiczba = 0, drugaLiczba = 0, wynik = 0;
-    char operatorArytmetyczny = '0';
-
-    std::cout << "Podaj liczbe 1: " << std::endl;
-    std::cin >> pierwszaLiczba;
-    std::cout << "Podaj operator" << std::endl;
-    std::cin >> operatorArytmetyczny;
-    std::cout << "Podaj liczbe 2: " << std::endl;
-    std::cin >> drugaLiczba;
-
-    switch (operatorArytmetyczny) {
-    case '+':
-        wynik = pierwszaLiczba + drugaLiczba;
-        std::cout << "Wynik: " << wynik << std::endl;
-        break;
-    case '-':
-        wynik = pierwszaLiczba - drugaLiczba;
-        std::cout << "Wynik: " << wynik << std::endl;
-        break;
-    case '*':
-        wynik = pierwszaLiczba * drugaLiczba;
-        std::cout << "Wynik: " << wynik << std::endl;
-        break;
-    case '/':
-        if (drugaLiczba == 0) std::cout << "Nie mozna dzielic przez 0" << std::endl;
-        wynik = pierwszaLiczba * drugaLiczba;
-        std::cout << "Wynik: " << wynik << std::endl;
-        break;
-    default: 
-        std::cout << "Blad" << std::endl;
-    }
-
-}
+#include <math.h>
 
 int main() {
 
-    calculator();
-    return 0;
+	int n = 0; 
+	int licznik = 0;
 
-    //cin.ignore();
-    //cin.get();
+	std::cout << "Podaj liczbe" << std::endl;
+	std::cin >> n;
+
+
+	for (int i = 1; i <= sqrt(n); i++) {
+
+		if (n % i == 0) {
+			std::cout << i << std::endl;
+			licznik++;
+		}
+	}
+
+	if (licznik == 2 && n != 1) std::cout << "Liczba byla pierwsza" << std::endl;
+
+	return 0;
 }
+
+// Zadanie 2.2
