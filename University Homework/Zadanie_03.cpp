@@ -21,18 +21,72 @@ void fillArray(double *array, int arraySize) {
 }
 
 void displayArray(double* array, int arraySize) {
+
+	std::cout << "Array:" << std::endl;
+
 	for (int i = 0; i < arraySize; i++) {
 		std::cout << array[i] << "   ";
 	}
+
+	std::cout << std::endl;
+}
+
+void displayArrayInverted(double* array, int arraySize) {
+
+	std::cout << "Inverted array:" << std::endl;
+
+	for (int i = arraySize - 1; i >= 0; i--) {
+		std::cout << array[i] << "   ";
+	}
+
+	std::cout << std::endl;
+}
+
+double average(double* array, int arraySize, bool flag) {
+
+	if (flag == true) std::cout << "Average: ";
+
+	double sum = 0; 
+
+	for (int i = 0; i < arraySize; i++) {
+		sum = sum + array[i];
+	}
+
+	return std::round(10 * (sum / arraySize)) / 10; ;
+
+	// std::cout << (sum / arraySize) << std::endl;
+
+}
+
+void biggerLesser(double* array, int arraySize, double average) {
+
+	int bigger = 0, lesser = 0;
+
+	for (int i = 0; i < arraySize; i++) {
+		if (array[i] > average) {
+			bigger++;
+		}
+		else {
+			lesser++;
+		}
+	}
+
+	std::cout << "Bigger: " << bigger << std::endl;
+	std::cout << "Lesser: " << lesser << std::endl;
+
 }
 
 int main() {
 
 	const int ARRAY_LENGHT = 10;
 	double array[ARRAY_LENGHT];
+	bool flag = true;
 
 	fillArray(array, ARRAY_LENGHT);
 	displayArray(array, ARRAY_LENGHT);
+	displayArrayInverted(array, ARRAY_LENGHT);
+	std::cout << average(array, ARRAY_LENGHT, true) << std::endl;
+	biggerLesser(array, ARRAY_LENGHT, average(array, ARRAY_LENGHT, false)); 
 
 	return 0;
 }
