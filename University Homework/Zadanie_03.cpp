@@ -90,3 +90,40 @@ int main() {
 
 	return 0;
 }
+
+// Zadanie 3.2
+
+#include <iostream>
+
+int main() {
+
+	int decimalNumber = 0;
+
+	std::cout << "Your input: ";
+	std::cin >> decimalNumber;
+	int decimalNumberUnmodified = decimalNumber;
+
+	int array[32];
+
+	int i = 0;
+
+	for (i = 0; decimalNumber > 0; i++) {
+		array[i] = decimalNumber % 2;
+		decimalNumber = decimalNumber / 2;
+	}
+
+	std::cout << "Your output in binary: ";
+
+	if (decimalNumberUnmodified > 0) {
+		std::cout << "0.";
+	}
+	else {
+		std::cout << "1.";
+	}
+	for (i = i - 1; i >= 0; i--) {
+		std::cout << array[i];
+	}
+
+	return 0;
+
+}
