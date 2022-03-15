@@ -1,80 +1,90 @@
 ﻿// Zadanie 3.3
 
 #include <iostream>
-#include <random> // https://en.cppreference.com/w/cpp/numeric/random
+#include <iterator>
+#include <string>
+#include <cctype>
+
+int countWhitespace(std::string& userInput) {
+	int counter = 0;
+	int length = userInput.length();
+	for (int i = 0; i < length; i++) {
+		int character = userInput[i];
+		if (isspace(character))
+			counter++;
+	}
+	return counter;
+}
+
+int countLetters(std::string& userInput) {
+
+	int counter = 0;
+	int length = userInput.length();
+
+	for (int i = 0; i <= userInput.length(); i++) {
+		if (userInput[i] >= 66 && userInput[i] <= 122) {
+			counter++;
+		}
+	}
+
+	return counter;
+}
+
+int countVowels(std::string& userInput) {
+
+	int counter = 0;
+	int length = userInput.length();
+
+	for (int i = 0; i <= userInput.length(); i++) {
+		if (userInput[i] == 'a' || userInput[i] == 'e' || userInput[i] == 'i' ||
+			userInput[i] == 'o' || userInput[i] == 'u' || userInput[i] == 'A' ||
+			userInput[i] == 'E' || userInput[i] == 'I' || userInput[i] == 'O' || 
+			userInput[i] == 'U') {
+			counter++;
+		}
+	}
+
+	return counter;
+}
+
+int countNumbersSum(std::string& userInput) {
+
+	int length = userInput.length();
+	int sum = 0;
+
+	for (int i = 0; i <= userInput.length(); i++) {
+		if (isdigit(userInput[i])){
+			//convert charater to int
+			int a = (userInput[i] - '0');
+			sum = sum + a;
+		}
+	}
+
+	return sum;
+}
+
 
 int main() {
 
-	// Initalise variables and constants
-	int const ARRAY_DIMENSION = 10;
-	int const GENERATE_RANGE = 100;
-	int maxOne = -1 * (GENERATE_RANGE);
-	int maxTwo = -1 * (GENERATE_RANGE);
-	int array[ARRAY_DIMENSION][ARRAY_DIMENSION];
+	int licznik = 0; 
 
-	// Define generating function parameters
-	const int range_from = -1 * (GENERATE_RANGE);							// Define scope
-	const int range_to = GENERATE_RANGE;									// ... 
-	std::random_device                  rand_dev;							// Uniformly-distributed integer random number generator ?
-	std::knuth_b                        generator(rand_dev());				// Choose algorythm
-	std::uniform_int_distribution<int>  distr(range_from, range_to);		// Produces integer values evenly distributed across a range ?
+	// disable skipping whitespace
+	std::cin >> std::noskipws;
 
-	// Generate random numbers for the array
-	for (int i = 0; i < ARRAY_DIMENSION; i++) {
-		for (int j = 0; j < ARRAY_DIMENSION; j++) {
-			array[i][j] = distr(generator);
-		}
-	}
+	// single-pass input iterator that reads successive objects of type char from the input
+	std::istream_iterator<char> it(std::cin);
+	std::istream_iterator<char> end;
+	std::string userInput(it, end);
 
-	// Print out the array 
-	for (int i = 0; i < ARRAY_DIMENSION; i++) {
-		for (int j = 0; j < ARRAY_DIMENSION; j++) {
-			// std::cout << array[i][j] << "   ";
-			printf("%5d", array[i][j]);
-		}
-		std::cout << std::endl;
-	}
+	std::cout << userInput;
 
-	// Initalise array to store min values for each column 
-	int min[ARRAY_DIMENSION];
-	for (int i = 0; i < ARRAY_DIMENSION; i++) {
-		min[i] = 0;
-	}
-
-	// Calculate minimum value in each respective column
-	std::cout << std::endl;
-	std::cout << "Min for respective columns: " << std::endl;
-
-	for (int j = 0; j < ARRAY_DIMENSION; j++) {
-		for (int i = 0; i < ARRAY_DIMENSION; i++) {
-			if (array[i][j] < min[j]) {
-				min[j] = array[i][j];
-			}
-		}
-		printf("%5d", min[j]);
-	}
-
-	// Calculate diagonal max
-	std::cout << std::endl;
-	std::cout << std::endl;
-	for (int j = 0; j < ARRAY_DIMENSION; j++) {
-		if (array[j][j] > maxOne) {
-			maxOne = array[j][j];
-		}
-	}
-	std::cout << "Max one: " << maxOne << std::endl;
-	std::cout << std::endl;
-
-	for (int j = ARRAY_DIMENSION - 1; j > 0; j--) {
-		if (array[j][j] > maxTwo) {
-			maxTwo = array[j][j];
-		}
-	}
-	std::cout << "Max two: " << maxTwo << std::endl;
-	std::cout << std::endl;
+	// Program output
+	std::cout << "Biale znaki: " << countWhitespace(userInput) << std::endl;
+	std::cout << "Litery: " << countLetters(userInput) << std::endl;
+	std::cout << "Samogloski: " << countVowels(userInput) << std::endl;
+	std::cout << "Suma cyfr: " << countNumbersSum(userInput) << std::endl;
 
 	return 0;
-	// std::exit(EXIT_SUCCESS);
 }
 
 
