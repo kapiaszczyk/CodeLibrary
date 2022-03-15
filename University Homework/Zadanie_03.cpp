@@ -207,3 +207,92 @@ int main() {
 	// std::exit(EXIT_SUCCESS);
 	
 }
+
+// Zadanie 3.4
+
+#include <iostream>
+#include <iterator>
+#include <string>
+#include <cctype>
+
+int countWhitespace(std::string& userInput) {
+	int counter = 0;
+	int length = userInput.length();
+	for (int i = 0; i < length; i++) {
+		int character = userInput[i];
+		if (isspace(character))
+			counter++;
+	}
+	return counter;
+}
+
+int countLetters(std::string& userInput) {
+
+	int counter = 0;
+	int length = userInput.length();
+
+	for (int i = 0; i <= userInput.length(); i++) {
+		if (userInput[i] >= 66 && userInput[i] <= 122) {
+			counter++;
+		}
+	}
+
+	return counter;
+}
+
+int countVowels(std::string& userInput) {
+
+	int counter = 0;
+	int length = userInput.length();
+
+	for (int i = 0; i <= userInput.length(); i++) {
+		if (userInput[i] == 'a' || userInput[i] == 'e' || userInput[i] == 'i' ||
+			userInput[i] == 'o' || userInput[i] == 'u' || userInput[i] == 'A' ||
+			userInput[i] == 'E' || userInput[i] == 'I' || userInput[i] == 'O' || 
+			userInput[i] == 'U') {
+			counter++;
+		}
+	}
+
+	return counter;
+}
+
+int countNumbersSum(std::string& userInput) {
+
+	int length = userInput.length();
+	int sum = 0;
+
+	for (int i = 0; i <= userInput.length(); i++) {
+		if (isdigit(userInput[i])){
+			//convert charater to int
+			int a = (userInput[i] - '0');
+			sum = sum + a;
+		}
+	}
+
+	return sum;
+}
+
+
+int main() {
+
+	int licznik = 0; 
+
+	// disable skipping whitespace
+	std::cin >> std::noskipws;
+
+	// single-pass input iterator that reads successive objects of type char from the input
+	std::istream_iterator<char> it(std::cin);
+	std::istream_iterator<char> end;
+	std::string userInput(it, end);
+
+	std::cout << userInput;
+
+	// Program output
+	std::cout << "Biale znaki: " << countWhitespace(userInput) << std::endl;
+	std::cout << "Litery: " << countLetters(userInput) << std::endl;
+	std::cout << "Samogloski: " << countVowels(userInput) << std::endl;
+	std::cout << "Suma cyfr: " << countNumbersSum(userInput) << std::endl;
+
+	return 0;
+}
