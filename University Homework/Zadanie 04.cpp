@@ -107,3 +107,29 @@ int main() {
 
 }
 
+// Zadanie 4.4
+
+include <iostream>
+#include <cstring>
+#include <string>
+
+void kombinacje(std::string array[], int arrayLength, int i = 0, std::string starterString = "") {
+
+	if (arrayLength == i) {
+		std::cout << starterString << std::endl; 
+	}
+	else {
+		kombinacje(array, arrayLength, i + 1, starterString + array[i]);
+		kombinacje(array, arrayLength, i + 1, starterString);
+	}
+}
+
+int main() {
+
+	std::string array[] = {" They call ", " me...", " Tim "};
+
+	kombinacje(array, 3);
+
+	return 0;
+
+}
