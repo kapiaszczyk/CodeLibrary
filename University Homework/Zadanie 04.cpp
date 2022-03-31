@@ -67,3 +67,43 @@ int main() {
 	print(punkty, N, ", ");
 
 }
+
+// Zadanie 4.3 
+
+// I dont work :)
+
+#include <iostream>
+#include <cstring>
+
+void print(int array[], int size, const char beforeOutput[], const char afterOutput[], const char separator[] = " ") {
+
+	int separatorLenght = strlen(separator);
+
+	for (int i = 0; i < size; i++) {
+		std::cout << array[i]; 
+		for (int j = 0; j < separatorLenght; j++) {
+			if (j == 0) std::cout << beforeOutput;
+			std::cout << separator[i];
+			if (j == separatorLenght - 1) std::cout << afterOutput;
+		}
+	}
+}
+
+int main() {
+
+	const int N = 5;
+	int punkty[N] = { 12, 5, 0, 20, 10 };
+
+	char afterOutput[] = " Something stupid ";
+	char beforeOutput[] = " Something dumb ";
+
+	std::cout << "punkty: ";
+	print(punkty, N, beforeOutput, afterOutput);
+
+	std::cout << std::endl;
+
+	std::cout << "punkty: ";
+	print(punkty, N, beforeOutput, afterOutput, ", ");
+
+}
+
