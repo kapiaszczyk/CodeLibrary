@@ -140,3 +140,41 @@ int main() {
 
 	return 0;
 }
+
+// Zadanie 5.2
+
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
+int* copyReversed(int values[], const int size) {
+
+	int tempSize = size - 1;
+	int * pointer = &values[tempSize];
+
+	for (int i = 0; i <= tempSize; i++ ) {
+		pointer[i] = *(values + tempSize - i);
+	}
+
+	return &pointer[0];
+}
+
+int main() {
+
+	const int firstSequenceLength = 5;
+	int firstSequence[firstSequenceLength] = { 1, 6, 7, 5, 3 };
+
+	int* sequenceReversed = copyReversed(firstSequence, firstSequenceLength);
+
+	for (int i = 0; i < firstSequenceLength; ++i) {
+		cout << sequenceReversed[i] << " ";
+	}
+
+	for (int i = 0; i < firstSequenceLength; ++i) {
+		cout << firstSequence[i] << " ";
+	}
+
+	return 0;
+
+}
