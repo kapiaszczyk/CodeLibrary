@@ -41,3 +41,39 @@ int main() {
     return 0;
 
 }
+
+// Zadanie 4.2
+
+#include <iostream>
+#include <cstring>
+
+using std::cout; using std::endl;
+
+void print(int array[], int size, const char separator[] = " ") {
+
+	int separatorLenght = strlen(separator);
+
+	for (int i = 0; i < size; i++) {
+		std::cout << array[i];
+
+		for (int i = 0; i < separatorLenght; i++) {
+			std::cout << separator[i];
+		}
+	}
+
+}
+
+int main() {
+
+	const int N = 5;
+	int punkty[N] = { 12, 5, 0, 20, 10 };
+
+	cout << "punkty: ";
+	print(punkty, N);
+
+	cout << "\npunkty: ";
+	print(punkty, N, ", ");
+
+	return 0;
+
+}
