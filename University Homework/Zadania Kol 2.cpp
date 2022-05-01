@@ -104,3 +104,39 @@ int main() {
 	return 0;
 
 }
+
+// Zadanie 5.1
+
+#include <iostream>
+#include <cstring>
+#include <string>
+#include <limits>
+
+using std::cout;
+using std::endl;
+
+void minMax(const int tab[], const int size, int* pmin, int* pmax) {
+
+	*pmin = INT_MAX;
+	*pmax = INT_MIN;
+
+	for (int i = 0; i < size; ++i) {
+		if (tab[i] > *pmax) *pmax = tab[i];
+		else if (tab[i] < *pmin) *pmin = tab[i];
+	}
+
+}
+
+int main() {
+
+	// Variables
+	int t[] = { 3, -4, 1, 0, 10, 5 };
+	int smallest, largest;
+
+	minMax(t, 6, &smallest, &largest);
+
+	cout << "Najmniejszy: " << smallest << endl;
+	cout << "Najwiekszy: " << largest << endl;
+
+	return 0;
+}
