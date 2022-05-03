@@ -178,3 +178,69 @@ int main() {
 	return 0;
 
 }
+
+// Zadanie 5.3
+
+#include <iostream>
+#include <string>
+
+using std::cout;
+using std::endl;
+using std::string;
+
+string* get_words(string text, int& num_words) {
+
+	int textLength = text.size(); 
+	string* arrayOfWords = new string[textLength];
+	int counter{};
+	string tempWord; 
+
+	for (int i = 0; i < textLength; i++) {
+
+		if (std::isspace(text[i])) {
+			tempWord = "";
+			if (std::isspace(text[i+1])) {
+				i++;
+			}
+		}
+		else if (!std::isspace(text[i])) {
+			tempWord += text[i];
+			if (std::isspace(text[i + 1])) {
+				// cout << "Temp word nested: " << tempWord << endl;
+				arrayOfWords[counter] = tempWord;
+
+				// cout << "Array of words word: " << arrayOfWords[counter] << endl;
+				counter++;
+			}
+		}
+
+	}
+
+	num_words = counter;
+	return arrayOfWords;
+
+}
+
+int main() {
+
+	int num_words;
+
+	string sampleText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!Provident similique accusantium nemo autem.";
+
+	string* words = get_words(sampleText, num_words);
+
+	cout << "Lista slow:\n";
+
+	if (num_words > 0) {
+
+		for (int i = 0; i < num_words; ++i) {
+			cout << i << ". " << words[i] << endl;
+		}
+
+		delete[] words;
+		words = nullptr;
+	}
+
+	return 0;
+
+}
