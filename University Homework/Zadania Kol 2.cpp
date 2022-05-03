@@ -244,3 +244,140 @@ int main() {
 	return 0;
 
 }
+
+// Zadanie 6.1
+
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <cctype>
+
+using std::cout;
+using std::endl;
+using std::string;
+using std::ifstream;
+
+
+void resetStream(ifstream& stream) {
+	stream.clear();                 // clear fail and eof bits
+	stream.seekg(0, std::ios::beg); // back to the start!
+}
+
+int countCharacters(ifstream &file) {
+
+	int characterCount{};
+	string extractedLine;
+
+	while (!file.eof())
+	{
+		getline(file, extractedLine);					// get line from stream into string till ecounters \n
+		int numofChars = extractedLine.length();		// line lenght as number of characters
+		characterCount += numofChars + 1;
+	}
+
+	characterCount--;
+
+	resetStream(file);
+
+	return characterCount;
+}
+
+int countWhiteSpace(ifstream& file) {
+
+	int whitespaceCount{};
+	string extractedLine;
+
+	while (!file.eof())
+	{
+		getline(file, extractedLine);
+		int lineLenght = extractedLine.length();
+		for (int i = 0; i < lineLenght; i++) {
+			if (isspace(extractedLine[i])) whitespaceCount++;
+		}
+	}
+
+	resetStream(file);
+	
+	return whitespaceCount;
+}
+
+int countWords(ifstream& file) {
+
+	string extractedLine;
+	string tempWord;
+	int wordCount{};
+
+	while (!file.eof())
+	{
+		getline(file, extractedLine);
+		int lineLenght = extractedLine.length();
+
+		if (lineLenght != 0) {
+
+			for (int i = 0; i < lineLenght; i++) {
+				if (std::isspace(extractedLine[i]) || (extractedLine[i + 1] == '\n')) {
+
+					if (std::isspace(extractedLine[i + 1]) || (extractedLine[i + 1] == '\n')) {
+						break;
+					}
+
+				}
+
+				else if (!std::isspace(extractedLine[i])) {
+					tempWord += extractedLine[i];
+					if (std::isspace(extractedLine[i + 1]) || (extractedLine[i + 1] == '\n')) {
+						wordCount++;
+					}
+				}
+
+				if (i == lineLenght - 1) {
+						if (extractedLine[i + 1] == '\n') wordCount++;
+				}
+
+				
+			}
+
+		}
+	}
+
+	wordCount++;
+
+	resetStream(file);
+
+	return wordCount;
+}
+
+int countLines(ifstream& file) {
+
+	int lineCount{};
+	string extractedLine;
+
+	while (!file.eof())
+	{
+		getline(file, extractedLine);
+		lineCount++;
+	}
+
+	resetStream(file);
+
+	return lineCount;
+}
+
+void statistics(const char fileName[]) {
+
+	ifstream file(fileName);
+
+	cout << "Number of characters: " << countCharacters(file) << endl;
+	cout << "Number of white space characters: " << countWhiteSpace(file) << endl;
+	cout << "Number of words: " << countWords(file) << endl;
+	cout << "Number of lines: " << countLines(file) << endl;
+
+	file.close();
+}
+
+int main() {
+
+	statistics("sampleText.txt");
+
+	return 0;
+}
