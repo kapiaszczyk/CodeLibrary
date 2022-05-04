@@ -247,7 +247,6 @@ int main() {
 
 // Zadanie 6.1
 
-#include <fstream>
 #include <iostream>
 #include <string>
 #include <cctype>
@@ -379,5 +378,160 @@ int main() {
 
 	statistics("sampleText.txt");
 
+	return 0;
+}
+
+// Zadanie 6.2
+
+#include <fstream>
+#include <iostream>
+#include <string>
+
+using std::cout;
+using std::endl;
+using std::string;
+using std::ifstream;
+using std::fstream;
+using std::ofstream;
+
+void szukaj(const char nazwaPlikWe[], const char nazwaPlikWy[], const char slowo[]) {
+
+	fstream readStream(nazwaPlikWe);
+	ofstream writeStream(nazwaPlikWy);
+
+	int lineCount{};
+	int lineLenght{};
+	int wordLength = strlen(slowo); 
+
+	string extractedLine;
+
+	while (!readStream.eof()) {
+
+		getline(readStream, extractedLine);
+		lineCount++;
+		bool found = false;
+
+		int indicator = extractedLine.find(slowo);
+
+		if (indicator != string::npos) writeStream << lineCount << ". " << extractedLine << "\n";
+
+	}
+
+	readStream.clear();                 // clear fail and eof bits
+	readStream.seekg(0, std::ios::beg); // back to the start!
+
+	writeStream.close();
+	readStream.close();
+}
+
+int main() {
+
+	szukaj("input.txt", "output.txt", "commodi");
+
+	return 0;
+}
+
+// Zadanie 6.3
+
+#include <fstream>
+#include <iostream>
+#include <string>
+
+using std::cout;
+using std::endl;
+using std::string;
+using std::ifstream;
+using std::fstream;
+using std::ofstream;
+
+int countYears(int age, bool isMale) {
+
+	if (age > 65) return 0;
+	if (isMale) {
+		return 65 - age;
+	}
+	else return 60 - age;
+
+}
+
+void retirement(const char nazwaPliku[]) {
+
+
+	fstream file(nazwaPliku);
+
+
+	while (!file.eof()) {
+
+		string extractedLine;
+		getline(file, extractedLine);
+		int lineLength = extractedLine.length();
+
+		string tempString;
+		string tempStringFirstName;
+		string tempStringLastName;
+		string sex;
+
+		int age{};
+		int numWord{};
+		bool moveFurther = false;
+		bool isMale = false;
+		int spaceCount{};
+
+		for (int i = 0; i < lineLength; ++i) {
+
+				if (extractedLine[i] == ' ') {
+					switch (numWord) {
+					case 0:
+						tempStringFirstName = tempString;
+						break;
+					case 1:
+						tempString.erase(tempString.begin());
+						tempStringLastName = tempString;
+						break;
+					case 2:
+						tempString.erase(tempString.begin());
+						if (tempString == "M") {
+							isMale = true;
+						}
+						else isMale = false;
+						break;
+					}
+					numWord++;
+					tempString = "";
+				}
+
+			tempString += extractedLine[i];
+
+			if (i == lineLength - 1) {
+
+				tempString.erase(tempString.begin());
+				age = std::stoi(tempString);
+
+				if (isMale) {
+					ofstream male("males.txt", std::ios::app);
+					male << tempStringLastName << " ";
+					male << tempStringFirstName << " ";
+					male << countYears(age, isMale) << "\n" ;
+					male.close();
+				}
+
+				else {
+					ofstream female("females.txt", std::ios::app);
+					female << tempStringLastName << " ";
+					female << tempStringFirstName << " ";
+					female << countYears(age, isMale) << "\n";
+					female.close();
+				}
+			}
+		}
+
+	}
+
+	file.close();
+
+}
+
+int main() {
+	retirement("source.txt");
 	return 0;
 }
