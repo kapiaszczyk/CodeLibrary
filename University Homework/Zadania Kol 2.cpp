@@ -535,3 +535,224 @@ int main() {
 	retirement("source.txt");
 	return 0;
 }
+
+// Zadanie 6.3
+
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using std::cout;
+using std::endl;
+using std::string;
+using std::ifstream;
+using std::fstream;
+using std::ofstream;
+using std::stringstream;
+
+void sumSave(const char nazwaPliku[]) {
+
+	fstream plik(nazwaPliku, std::ios::in | std::ios::out | std::ios::app);
+	string extractedLine;
+	std::stringstream stringStream;
+	int sum{};
+
+
+	while (!plik.eof()) {
+		int lineLenght{};
+		int lineCounter{};
+		getline(plik, extractedLine);
+
+		lineLenght = extractedLine.length();
+
+		if (lineLenght == 0 && lineCounter) {
+			plik << 0;
+		}
+
+		stringStream << extractedLine;
+		bool isEofString = stringStream.eof();
+
+		while (!stringStream.eof()) {
+			string tempWord;
+			int foundIndicator{};
+			stringStream >> tempWord;
+			if (stringstream(tempWord) >> foundIndicator) {
+				sum += foundIndicator;
+			}
+		}
+
+		stringStream.str("");
+		stringStream.clear(); // Clear state flags.
+		stringStream.flush();
+
+
+	}
+
+	plik.close();
+
+	fstream saveFile(nazwaPliku, std::ios::app);
+	saveFile << "\n" << sum;
+
+	saveFile.close();
+}
+
+int main() {
+
+	sumSave("numbersSource.txt");
+	
+	return 0;
+}
+
+
+Zadanie 7.1
+
+#include <iostream>
+#include <string>
+#include <cctype>
+
+using std::string;
+using std::cout; using std::endl;
+
+std::string to_lowercase(const std::string& s) {
+   string str = s; 
+
+   for (int i = 0; i < s.length(); i++) {
+       str[i] = (char)tolower(s[i]);
+   }
+
+
+   return str; 
+}
+
+int main()
+{
+   string s = "LoRemIpSum";
+
+   cout << to_lowercase(s) << endl;
+
+}
+
+
+Zadanie 7.2
+
+#include <iostream>
+
+using std::string;
+using std::cout; using std::endl;
+
+int countWords(const std::string& text) {
+
+	int wordCount{};
+	int stringLegth = text.length();
+	char space = ' ';
+
+
+
+	for (int i = 0; i < stringLegth; i++) {
+		if(text[i] ==  space) wordCount++;
+	 }
+
+	return (wordCount + 1);
+}
+
+int main() {
+
+	const std::string text = "(You don't know about me without you have read a book by the name of The Adventures of Tom Sawyer; but that ain't no matter. That book was made by Mr. Mark Twain, and he told the truth, mainly. There was things which he stretched, but mainly he told the truth. That is nothing. I never seen anybody but lied one time or another, without it was Aunt Polly, or the widow, or maybe Mary. Aunt Polly--Tom's Aunt Polly, she is--and Mary, and the Widow Douglas is all told about in that book, which is mostly a true book, with some stretchers, as I said before.)";
+
+	cout << countWords(text) << endl;
+
+	return 0;
+}
+
+Zadanie 7.3
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using std::string;
+using std::vector; using std::pair;
+using std::cout; using std::endl;
+
+void wordStats(const string& text) {
+
+
+	vector<pair<string, int>> wordCount;
+
+	for (int i = 0; i < text.length(); ++i) {
+
+	}
+
+
+	// Sort vector
+	std::sort(wordCount.begin(), wordCount.end(),
+		[](std::pair<std::string, int>& p1, std::pair<std::string, int>& p2) {
+			return p1.second > p2.second;
+		});
+
+	cout << "Unique words" << "" << endl;
+	cout << "15 most frewquent words" << " " << endl;
+	for (auto p : wordCount) {
+		cout << p.first << " : " << p.second << endl;
+	}
+}
+
+void countWords(const std::string& text) {
+
+	int wordCounter{};
+	int stringLegth = text.length();
+	char space = ' ';
+
+	for (int i = 0; i < stringLegth; i++) {
+		if (text[i] == ' ' || text[i] == '.') wordCounter++;
+	}
+
+	cout << (wordCounter + 1) << endl;
+
+}
+
+int main() {
+
+	const std::string text = "(You don't know about me without you have read a book by the name of The Adventures of Tom Sawyer; but that ain't no matter. That book was made by Mr. Mark Twain, and he told the truth, mainly. There was things which he stretched, but mainly he told the truth. That is nothing. I never seen anybody but lied one time or another, without it was Aunt Polly, or the widow, or maybe Mary. Aunt Polly--Tom's Aunt Polly, she is--and Mary, and the Widow Douglas is all told about in that book, which is mostly a true book, with some stretchers, as I said before.)";
+
+	wordStats(text);
+	countWords(text);
+
+	return 0;
+}
+
+// https://stackoverflow.com/questions/4888879/elegant-ways-to-count-the-frequency-of-words-in-a-file
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <cctype>
+
+using std::cout; using std::endl;
+using std::ifstream; using std::fstream; using std::ofstream;
+using std::string;
+
+
+void szukaj(const char nazwaPlikWe[], const char nazwaPlikWy[], const char slowo[]) {
+
+	fstream stream;
+
+	stream.open(nazwaPlikWe, std::fstream::in);
+
+	string wiersz;
+
+
+	stream.close();
+
+
+}
+
+int main() {
+
+	const char nazwaPlikWe[] = "Input.txt";
+	const char nazwaPlikWy[] = "Output.txt";
+	const char slowo[] = "egzamin";
+
+	szukaj(nazwaPlikWe, nazwaPlikWy, slowo);
+
+}
