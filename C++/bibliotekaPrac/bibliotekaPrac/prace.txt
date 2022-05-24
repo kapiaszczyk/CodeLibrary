@@ -1,0 +1,22 @@
+ID 1
+TP mgr
+TT Kamienie
+AN Kamyk
+AI Maria
+IN M.
+YY 2005
+PI Alex
+PN Nowak
+SK klucze
+ST 
+ID 2
+TP lic
+TT nie
+AN tak
+AI Anna,Maria,Magdalena
+II A. M. M.
+YY 2005
+PN nie
+PI tak
+SK morze
+ST 
